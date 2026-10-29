@@ -1,0 +1,38 @@
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+public class DisplayTextAndImage extends Application {
+    @Override
+    public void start(Stage primaryStage) {
+        Label textLabel = new Label("Hello, JavaFX!");
+        
+        // FIX: Ensure the path points to a real image on your machine or internet
+        // For a local file in the project root folder, use "file:imagePath.jpg" 
+        // For an absolute path, use "file:/C:/path/to/image.jpg" (Windows)
+        Image image = new Image("file:imagePath.jpg");
+        
+        ImageView imageView = new ImageView(image);
+        imageView.setFitWidth(400);  
+        imageView.setFitHeight(300); 
+        
+        // Keeps the aspect ratio intact so the image doesn't look stretched
+        imageView.setPreserveRatio(true); 
+
+        VBox vbox = new VBox(10); 
+        vbox.getChildren().addAll(textLabel, imageView);
+        
+        Scene scene = new Scene(vbox, 600, 400); 
+        primaryStage.setTitle("Text and Image Display");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
